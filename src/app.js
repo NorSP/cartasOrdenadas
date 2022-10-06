@@ -10,7 +10,7 @@ window.onload = function() {
   let button2 = document.getElementById("aceptar");
   const palos = ["♦", "♥", "♠", "♣"];
   const numeros = [
-    "A",
+    "1",
     "2",
     "3",
     "4",
@@ -20,9 +20,9 @@ window.onload = function() {
     "8",
     "9",
     "10",
-    "J",
-    "Q",
-    "K"
+    "11",
+    "12",
+    "13"
   ];
   let ordenar = [];
   let input = document.getElementById("inputparasabercartas");
@@ -30,6 +30,7 @@ window.onload = function() {
   //write your code here
 
   function randomCardGenerator() {
+    ordenar = [];
     container.innerHTML = "";
 
     for (let i = 0; i < input.value; i++) {
@@ -77,7 +78,34 @@ window.onload = function() {
   };
   button.addEventListener("click", function() {
     let nuevoArrayOrdenado = bubbleSort(ordenar);
+    imprimirOrdenadas(nuevoArrayOrdenado);
     console.log("funciona");
     console.log(nuevoArrayOrdenado);
+  });
+  const imprimirOrdenadas = arr => {
+    container.innerHTML = "";
+    for (let index = 0; index < arr.length; index++) {
+      container.innerHTML += `<div class="card-body card">
+      <div>
+          <h1 id="palo">${arr[index].palo}</h1></h1>
+      </div>
+      <div>
+          <h1 id="numero">${arr[index].numero}</h1>
+
+      </div>
+      <div>
+          <h1 id="palo2">${arr[index].palo}</h1>
+
+      </div>
+  </div>`;
+    }
+  };
+
+  input.addEventListener("input", function() {
+    if (input.value <= 0) {
+      input.value = 1;
+    } else if (input.value > 20) {
+      input.value = 20;
+    }
   });
 };
